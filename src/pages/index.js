@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Goal from '../components/Goal'
 
 const Home = () => {
   return (
@@ -7,6 +8,7 @@ const Home = () => {
         <title>Goal Tracker</title>
       </Head>
       <h1>Goal Tracker</h1>
+      <Goal />
     </div>
   )
 }

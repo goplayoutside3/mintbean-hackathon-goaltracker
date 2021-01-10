@@ -1,12 +1,14 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: process.env.FB_KEY,
-  authDomain: process.env.FB_DOMAIN,
-  projectId: process.env.FB_PROJECT_ID,
-  storageBucket: FB_BUCKET,
-  messagingSenderId: FB_SENDING_ID,
-  appId: FB_API_ID,
+  apiKey: process.env.NEXT_PUBLIC_FB_KEY,
+  authDomain: `${process.env.NEXT_PUBLIC_FB_PROJECT_ID}.firebaseapp.com`,
+  databaseURL: `https://${process.env.NEXT_PUBLIC_FB_PROJECT_ID}.firebaseio.com`,
+  projectId: process.env.NEXT_PUBLIC_FB_PROJECT_ID,
+  storageBucket: `${process.env.NEXT_PUBLIC_FB_PROJECT_ID}.appspot.com`,
+  messagingSenderId: process.env.NEXT_PUBLIC_FB_SENDING_ID,
+  appId: process.env.NEXT_PUBLIC_FB_API_ID,
 };
 
 try {
