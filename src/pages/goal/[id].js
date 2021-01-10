@@ -1,31 +1,36 @@
-import { useState, useEffect } from 'react';
 import fire from '../../config/fire-config';
+import Link from 'next/link';
 
-const SingleGoal = ({ goalId }) => {
-  const [goalData, setGoalData] = useState(null);
-
-  useEffect(() => {
-    fire
-      .firestore()
-      .collection('goals')
-      .doc(goalId)
-      .get()
-      .then((goal) => {
-        setGoalData(goal.data());
-      });
-  }, []);
-
+const SingleGoal = ({ title = '', content = '' }) => {
   return (
     <div>
-      {goalData.title && <h1>{goalData.title}</h1>}
-      {goalData.content && <p>{goalData.content}</p>}
+      <h1>{title}</h1>
+      <p>{content}</p>
+      <Link href="/">
+        <a>Back</a>
+      </Link>
     </div>
   );
 };
 
-SingleGoal.getInitialProps = ({ query }) => {
+export const getServerSideProps = async ({ query }) => {
+  const goal = {};
+
+  await fire
+    .firestore()
+    .collection('goals')
+    .doc(query.id)
+    .get()
+    .then((result) => {
+      goal['title'] = result.data().title;
+      goal['content'] = result.data().content;
+    });
+
   return {
-    goalId: query.id,
+    props: {
+      title: goal.title,
+      content: goal.content,
+    },
   };
 };
 
