@@ -22,7 +22,6 @@ const Home = () => {
       });
   }, []);
 
-  console.log(goals);
   return (
     <div>
       <Head>
