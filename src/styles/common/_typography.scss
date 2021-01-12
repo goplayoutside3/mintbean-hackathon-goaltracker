@@ -1,7 +1,30 @@
 @font-face {
-  font-family: 'Titillium-Regular';
-  src: url('/fonts/Titillium-Regular.woff') format('woff'),
-    url('/fonts/Titillium-Regular.ttf') format('truetype');
+  font-family: 'Roboto-Thin';
+  src: url('/fonts/Roboto/Roboto-Thin.ttf') format('truetype');
 }
 
-$tt-reg: 'Titillium-Regular', sans-serif;
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url('/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url('/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+$roboto-thin: 'Roboto-Thin';
+$roboto-light: 'Roboto-Light';
+$roboto-reg: 'Roboto-Regular';
+$roboto-med: 'Roboto-Medium';
+$roboto-bold: 'Roboto-Bold';
