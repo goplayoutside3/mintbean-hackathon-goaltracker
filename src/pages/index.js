@@ -5,7 +5,7 @@ import NewGoal from '../components/NewGoal';
 import GoalPreview from '../components/GoalPreview';
 import fire from '../config/fire-config';
 
-import styles from '../styles/components/home.module.scss';
+import styles from '../styles/pages/home.module.scss';
 
 const Home = () => {
   const [goals, setGoals] = useState([]);
