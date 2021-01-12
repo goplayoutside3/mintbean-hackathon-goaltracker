@@ -3,3 +3,8 @@
 .main {
   padding: $section-padding;
 }
+
+.title-cont {
+  display: flex;
+  justify-content: space-between;
+}

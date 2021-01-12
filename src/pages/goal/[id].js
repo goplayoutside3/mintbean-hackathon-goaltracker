@@ -1,5 +1,6 @@
 import fire from '../../config/fire-config';
 import Link from 'next/link';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from '../../styles/pages/goal-id.module.scss';
 
@@ -24,13 +25,18 @@ const SingleGoal = ({ title = '', content = '', goalId }) => {
   };
 
   return (
-    <main className={styles.main}>
-      <h1>{title}</h1>
+    <main className="main">
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <div className={styles['title-cont']}>
+        <h1>{title}</h1>
+        <Link href="/">
+          <a className={styles.back}>Back to List</a>
+        </Link>
+      </div>
       <p>{content}</p>
       <button onClick={(e) => handleDelete(e)}>Delete This Goal</button>
-      <Link href="/">
-        <a>Back</a>
-      </Link>
     </main>
   );
 };

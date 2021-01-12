@@ -24,19 +24,25 @@ const Home = () => {
   }, []);
 
   return (
-    <main className={styles.main}>
+    <main className="main">
       <Head>
         <title>Goal Tracker</title>
       </Head>
-      <h1>Goal Tracker</h1>
-      <NewGoal />
-      {goals && goals.length && (
-        <ul>
-          {goals.map((goal) => (
-            <GoalPreview goal={goal} />
-          ))}
-        </ul>
-      )}
+
+      <h1 className={styles.title}>Goal Tracker</h1>
+      <div className={styles.container}>
+        <NewGoal />
+        <div className={styles['list-cont']}>
+          <h2 className="h2">Current Goals</h2>
+          {goals && goals.length && (
+            <ol type="1" className={styles.list}>
+              {goals.map(((goal, index) => (
+                <GoalPreview key={goal.id} goal={goal} index={index} />
+              )))}
+            </ol>
+          )}
+        </div>
+      </div>
     </main>
   );
 };

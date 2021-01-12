@@ -25,25 +25,25 @@ const Goal = () => {
   };
 
   return (
-    <div>
-      <h2 className="h2">Add Goal</h2>
+    <div className={styles.container}>
+      <h2 className="h2">Add a New Goal</h2>
 
       {notification}
 
       <form onSubmit={handleSubmit}>
-        <div>
-          Title
-          <br />
+        <div className={styles.field}>
+          <label className={styles.label}>Title</label>
           <input
+            className={styles['text-input']}
             type="text"
             value={title}
             onChange={({ target }) => setTitle(target.value)}
           />
         </div>
-        <div>
-          Content
-          <br />
+        <div className={styles.field}>
+          <label className={styles.label}>Description</label>
           <textarea
+            className={styles['text-input']}
             value={content}
             onChange={({ target }) => setContent(target.value)}
           />

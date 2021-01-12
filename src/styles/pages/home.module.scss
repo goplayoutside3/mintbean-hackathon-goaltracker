@@ -1,5 +1,14 @@
 @import '../common/_variables.scss';
 
-.main {
-  padding: $section-padding;
+.container {
+  display: flex;
+}
+
+.list-cont {
+  width: 50%;
+}
+
+.list {
+  width: 100%;
+  list-style: inside;
 }
