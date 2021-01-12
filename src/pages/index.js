@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-
 import Head from 'next/head';
-import Link from 'next/link';
 
 import NewGoal from '../components/NewGoal';
+import GoalPreview from '../components/GoalPreview';
 import fire from '../config/fire-config';
 
 const Home = () => {
@@ -32,11 +31,7 @@ const Home = () => {
       {goals && goals.length && (
         <ul>
           {goals.map((goal) => (
-            <li key={goal.id}>
-              <Link href="/goal/[id]" as={`/goal/${goal.id}`}>
-                {goal.title}
-              </Link>
-            </li>
+            <GoalPreview goal={goal} />
           ))}
         </ul>
       )}
