@@ -13,7 +13,7 @@ const Goal = () => {
     fire
       .firestore()
       .collection('goals')
-      .add({ title: title, content: content });
+      .add({ title: title, content: content, status: 'paused' });
 
     setTitle('');
     setContent('');

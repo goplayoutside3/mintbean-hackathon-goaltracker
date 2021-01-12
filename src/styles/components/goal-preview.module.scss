@@ -1,4 +1,5 @@
 @import '../common/_variables.scss';
+@import '../common/_typography.scss';
 
 .goal {
   display: flex;
@@ -8,9 +9,34 @@
 }
 
 .title-cont {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .number {
   margin-right: 5px;
+}
+
+.title, .number {
+  font-size: 1.2rem;
+}
+
+.status-cont {
+  display: flex;
+  margin-bottom: $copy-margin-bottom;
+
+  .status, .delete {
+    background-color: #eeeeee;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: $roboto-bold;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .status.active {
+    background-color: $dark-green;
+    color: white;
+  }
 }
