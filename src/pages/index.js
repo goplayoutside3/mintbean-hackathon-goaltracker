@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import Goal from '../components/Goal';
+import NewGoal from '../components/NewGoal';
 import fire from '../config/fire-config';
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
         <title>Goal Tracker</title>
       </Head>
       <h1>Goal Tracker</h1>
-      <Goal />
+      <NewGoal />
       {goals && goals.length && (
         <ul>
           {goals.map((goal) => (
