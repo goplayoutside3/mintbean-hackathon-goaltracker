@@ -5,6 +5,8 @@ import NewGoal from '../components/NewGoal';
 import GoalPreview from '../components/GoalPreview';
 import fire from '../config/fire-config';
 
+import styles from '../styles/components/home.module.scss';
+
 const Home = () => {
   const [goals, setGoals] = useState([]);
 
@@ -22,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <main className={styles.main}>
       <Head>
         <title>Goal Tracker</title>
       </Head>
@@ -35,7 +37,7 @@ const Home = () => {
           ))}
         </ul>
       )}
-    </div>
+    </main>
   );
 };
 export default Home;

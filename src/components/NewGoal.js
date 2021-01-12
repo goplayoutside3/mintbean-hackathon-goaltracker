@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import fire from '../config/fire-config';
+import styles from '../styles/components/new-goal.module.scss';
 
 const Goal = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [notification, setNotification] = useState('')
+  const [notification, setNotification] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,16 +17,16 @@ const Goal = () => {
 
     setTitle('');
     setContent('');
-    setNotification('Goal Created')
+    setNotification('Goal Created');
 
     setTimeout(() => {
-      setNotification('')
-    }, 2000)
+      setNotification('');
+    }, 2000);
   };
 
   return (
     <div>
-      <h2>Add Goal</h2>
+      <h2 className="h2">Add Goal</h2>
 
       {notification}
 
