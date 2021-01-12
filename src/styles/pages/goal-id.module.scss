@@ -1,10 +1,37 @@
 @import '../common/_variables.scss';
+@import '../common/_typography.scss';
 
 .main {
   padding: $section-padding;
 }
 
-.title-cont {
-  display: flex;
-  justify-content: space-between;
+.title {
+  font-size: 2rem;
+}
+
+.back {
+  display: block;
+  width: fit-content;
+  margin-left: auto;
+  border: $green-bg 4px solid;
+	cursor: pointer;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-family: $roboto-bold;
+  font-size: 1rem;
+  transition: all 150ms linear;
+
+  &:hover {
+    background-color: $green-bg;
+  }
+}
+
+.edit {
+  background-color: transparent;
+  padding: 0;
+
+  .edit-icon {
+    height: 1rem;
+    width: 1rem;
+  }
 }
