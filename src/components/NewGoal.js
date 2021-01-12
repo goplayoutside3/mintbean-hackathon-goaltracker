@@ -5,7 +5,6 @@ import styles from '../styles/components/new-goal.module.scss';
 const Goal = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [notification, setNotification] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,19 +16,11 @@ const Goal = () => {
 
     setTitle('');
     setContent('');
-    setNotification('Goal Created');
-
-    setTimeout(() => {
-      setNotification('');
-    }, 2000);
   };
 
   return (
     <div className={styles.container}>
       <h2 className="h2">Add a New Goal</h2>
-
-      {notification}
-
       <form onSubmit={handleSubmit}>
         <div className={styles.field}>
           <label className={styles.label}>Title</label>

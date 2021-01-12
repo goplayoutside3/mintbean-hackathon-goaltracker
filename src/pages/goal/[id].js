@@ -24,7 +24,6 @@ const SingleGoal = ({ title = '', content = '', goalId, status = 'paused' }) => 
       .doc(goalId)
       .delete()
       .then(() => {
-        console.log('successfully deleted');
         router.push('/');
       })
       .catch((error) => {
