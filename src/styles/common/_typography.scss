@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Titillium-Regular';
+  src: url('/fonts/Titillium-Regular.woff') format('woff'),
+    url('/fonts/Titillium-Regular.ttf') format('truetype');
+}
+
+$tt-reg: 'Titillium-Regular', sans-serif;
