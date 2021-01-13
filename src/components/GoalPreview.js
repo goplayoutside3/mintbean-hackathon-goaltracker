@@ -24,20 +24,46 @@ const GoalPreview = ({ goal, index }) => {
     e.preventDefault();
 
     fire
-    .firestore()
-    .collection('goals')
-    .doc(goal.id)
-    .update({
-      status: e.target.value,
-    })
-    .then(() => {
-      // do something?
-    })
-    .catch((error) => console.log(error));
+      .firestore()
+      .collection('goals')
+      .doc(goal.id)
+      .update({
+        status: e.target.value,
+      })
+      .then(() => {
+        // do something?
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
     <li key={goal.id} className={styles.goal}>
+      <div className={styles['tags-cont']}>
+        <div
+          className={classes(styles.tag, styles.exercise, {
+            [styles.tagged]: goal.taggedCoding,
+          })}
+        >
+          #exercise
+        </div>
+
+        <div
+          className={classes(styles.tag, styles.coding, {
+            [styles.tagged]: goal.taggedExercise,
+          })}
+        >
+          #coding
+        </div>
+
+        <div
+          className={classes(styles.tag, styles.cooking, {
+            [styles.tagged]: goal.taggedCooking,
+          })}
+        >
+          #cooking
+        </div>
+
+      </div>
       <div className={styles['title-cont']}>
         <span className={styles.number}>{index + 1}.</span>
         {goal.title && (
@@ -52,7 +78,7 @@ const GoalPreview = ({ goal, index }) => {
             [styles.active]: goal.status === 'paused',
           })}
           onClick={(e) => handleStatus(e)}
-          value='paused'
+          value="paused"
         >
           Paused
         </button>
@@ -61,7 +87,7 @@ const GoalPreview = ({ goal, index }) => {
             [styles.active]: goal.status === 'progress',
           })}
           onClick={(e) => handleStatus(e)}
-          value='progress'
+          value="progress"
         >
           In Progress
         </button>
@@ -70,7 +96,7 @@ const GoalPreview = ({ goal, index }) => {
             [styles.active]: goal.status === 'complete',
           })}
           onClick={(e) => handleStatus(e)}
-          value='complete'
+          value="complete"
         >
           Complete
         </button>

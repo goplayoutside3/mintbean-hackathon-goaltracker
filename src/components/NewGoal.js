@@ -90,7 +90,7 @@ const NewGoal = () => {
             <label>#cooking</label>
           </div>
         </div>
-        <button type="submit">Save</button>
+        <button type="submit" className={styles.save}>Save</button>
       </form>
     </div>
   );

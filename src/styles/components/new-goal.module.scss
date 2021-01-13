@@ -31,8 +31,11 @@
     height: 1rem;
     width: 1rem;
     margin: 0 5px 0 0;
-    border: $dark-green 1px solid;
     padding: 0;
-    background-color: white;
   }
+}
+
+.save {
+  background: $dark-green;
+  color: white;
 }
