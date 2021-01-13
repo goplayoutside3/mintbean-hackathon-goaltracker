@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import fire from '../config/fire-config';
 import styles from '../styles/components/new-goal.module.scss';
 
-const Goal = () => {
+const NewGoal = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [taggedExercise, setTaggedExercise] = useState(false);
+  const [taggedCoding, setTaggedCoding] = useState(false);
+  const [taggedCooking, setTaggedCooking] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,10 +15,28 @@ const Goal = () => {
     fire
       .firestore()
       .collection('goals')
-      .add({ title: title, content: content, status: 'paused' });
+      .add({
+        title: title,
+        content: content,
+        status: 'paused',
+        taggedExercise,
+        taggedCoding,
+        taggedCooking,
+      });
 
     setTitle('');
     setContent('');
+    setTaggedCooking(false);
+    setTaggedExercise(false);
+    setTaggedCoding(false);
+  };
+
+  const handleCheckboxChange = (e) => {
+    const name = e.target.name;
+
+    if (name === 'exercise') setTaggedExercise(!taggedExercise);
+    else if (name === 'coding') setTaggedCoding(!taggedCoding);
+    else if (name === 'cooking') setTaggedCooking(!taggedCooking);
   };
 
   return (
@@ -39,10 +60,37 @@ const Goal = () => {
             onChange={({ target }) => setContent(target.value)}
           />
         </div>
+        <div className={styles.tag}>
+          <label>#exercise</label>
+          <input
+            name="exercise"
+            type="checkbox"
+            checked={taggedExercise}
+            onChange={(e) => handleCheckboxChange(e)}
+          />
+        </div>
+        <div className={styles.tag}>
+          <label>#coding</label>
+          <input
+            name="coding"
+            type="checkbox"
+            checked={taggedCoding}
+            onChange={(e) => handleCheckboxChange(e)}
+          />
+        </div>
+        <div className={styles.tag}>
+          <label>#cooking</label>
+          <input
+            name="cooking"
+            type="checkbox"
+            checked={taggedCooking}
+            onChange={(e) => handleCheckboxChange(e)}
+          />
+        </div>
         <button type="submit">Save</button>
       </form>
     </div>
   );
 };
 
-export default Goal;
+export default NewGoal;
