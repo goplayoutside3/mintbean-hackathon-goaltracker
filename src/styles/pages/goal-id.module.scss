@@ -1,8 +1,12 @@
 @import '../common/_variables.scss';
 @import '../common/_typography.scss';
 
-.main {
+.title-cont, .details {
+  margin-bottom: $page-margin;
+	background-color: white;
   padding: $section-padding;
+  border-radius: 1rem;
+  position: relative;
 }
 
 .title {
@@ -10,25 +14,26 @@
 }
 
 .back {
-  display: block;
-  width: fit-content;
-  margin-left: auto;
-  border: $green-bg 4px solid;
+  position: absolute;
+  right: $section-padding / 2;
+  top: $section-padding / 2;
 	cursor: pointer;
-	padding: 10px 20px;
 	border-radius: 5px;
 	font-family: $roboto-bold;
   font-size: 1rem;
   transition: all 150ms linear;
 
   &:hover {
-    background-color: $green-bg;
+    color: $dark-green;
   }
 }
 
 .edit {
   background-color: transparent;
   padding: 0;
+  position: absolute;
+  left: $section-padding / 2;
+  top: $section-padding / 2;
 
   .edit-icon {
     height: 1rem;
@@ -36,9 +41,13 @@
   }
 }
 
+.content {
+  margin-bottom: $copy-margin-bottom * 2;
+}
+
 .tags-cont {
   display: flex;
-  margin-bottom: $copy-margin-bottom;
+  margin-bottom: $copy-margin-bottom * 2;
 
   .tag {
     background: $light-gray;
@@ -74,7 +83,6 @@
 
 .status-cont {
   display: flex;
-  margin-bottom: $copy-margin-bottom;
 
   .status, .delete {
     background-color: $light-gray;

@@ -1,11 +1,6 @@
 @import '../common/_variables.scss';
 @import '../common/_typography.scss';
 
-.container {
-  width: 40%;
-  padding-right: $section-padding;
-}
-
 .field {
   margin-bottom: $copy-margin-bottom;
 }
@@ -19,4 +14,25 @@
   padding: 2px;
   font-size: 1rem;
   font-family: $roboto-light;
+  border: $dark-green 1px solid;
+}
+
+.tags-cont {
+  margin-bottom: $copy-margin-bottom;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.4rem;
+
+  .check {
+    height: 1rem;
+    width: 1rem;
+    margin: 0 5px 0 0;
+    border: $dark-green 1px solid;
+    padding: 0;
+    background-color: white;
+  }
 }

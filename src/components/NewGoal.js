@@ -12,17 +12,14 @@ const NewGoal = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    fire
-      .firestore()
-      .collection('goals')
-      .add({
-        title: title,
-        content: content,
-        status: 'paused',
-        taggedExercise,
-        taggedCoding,
-        taggedCooking,
-      });
+    fire.firestore().collection('goals').add({
+      title: title,
+      content: content,
+      status: 'paused',
+      taggedExercise,
+      taggedCoding,
+      taggedCooking,
+    });
 
     setTitle('');
     setContent('');
@@ -60,32 +57,38 @@ const NewGoal = () => {
             onChange={({ target }) => setContent(target.value)}
           />
         </div>
-        <div className={styles.tag}>
-          <label>#exercise</label>
-          <input
-            name="exercise"
-            type="checkbox"
-            checked={taggedExercise}
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-        </div>
-        <div className={styles.tag}>
-          <label>#coding</label>
-          <input
-            name="coding"
-            type="checkbox"
-            checked={taggedCoding}
-            onChange={(e) => handleCheckboxChange(e)}
-          />
-        </div>
-        <div className={styles.tag}>
-          <label>#cooking</label>
-          <input
-            name="cooking"
-            type="checkbox"
-            checked={taggedCooking}
-            onChange={(e) => handleCheckboxChange(e)}
-          />
+
+        <div className={styles['tags-cont']}>
+          <div className={styles.tag}>
+            <input
+              className={styles.check}
+              name="exercise"
+              type="checkbox"
+              checked={taggedExercise}
+              onChange={(e) => handleCheckboxChange(e)}
+            />
+            <label>#exercise</label>
+          </div>
+          <div className={styles.tag}>
+            <input
+              className={styles.check}
+              name="coding"
+              type="checkbox"
+              checked={taggedCoding}
+              onChange={(e) => handleCheckboxChange(e)}
+            />
+            <label>#coding</label>
+          </div>
+          <div className={styles.tag}>
+            <input
+              className={styles.check}
+              name="cooking"
+              type="checkbox"
+              checked={taggedCooking}
+              onChange={(e) => handleCheckboxChange(e)}
+            />
+            <label>#cooking</label>
+          </div>
         </div>
         <button type="submit">Save</button>
       </form>

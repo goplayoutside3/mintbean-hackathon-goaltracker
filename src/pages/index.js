@@ -6,6 +6,7 @@ import GoalPreview from '../components/GoalPreview';
 import fire from '../config/fire-config';
 
 import styles from '../styles/pages/home.module.scss';
+import classes from 'classnames';
 
 const Home = () => {
   const [goals, setGoals] = useState([]);
@@ -28,18 +29,24 @@ const Home = () => {
       <Head>
         <title>Goal Tracker</title>
         <link
-          rel="shortcut icon" type="image/x-icon" href="/favicon2.svg"
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="/favicon2.svg"
         ></link>
         <link
-          rel="shortcut icon" type="image/x-icon" href="/favicon2.ico"
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="/favicon2.ico"
         ></link>
       </Head>
 
-      <h1 className={styles.title}>Goal Tracker</h1>
+      <h1 className={styles.title}>Daily Goals Tracker</h1>
       <div className={styles.container}>
-        <NewGoal />
+        <div className={styles.new}>
+          <NewGoal />
+        </div>
         <div className={styles['list-cont']}>
-          <h2 className="h2">Current Goals</h2>
+          <h2 className={classes('h2', styles.current)}>Current Goals</h2>
           {goals && goals.length && (
             <ol type="1" className={styles.list}>
               {goals.map((goal, index) => (

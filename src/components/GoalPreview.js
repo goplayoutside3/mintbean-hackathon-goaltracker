@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import fire from '../config/fire-config';
 import styles from '../styles/components/goal-preview.module.scss';

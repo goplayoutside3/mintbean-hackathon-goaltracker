@@ -124,7 +124,7 @@ const SingleGoal = ({
   };
 
   const toggleCooking = (e) => {
-    console.log('here')
+    console.log('here');
     e.preventDefault();
 
     fire
@@ -145,10 +145,11 @@ const SingleGoal = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <Link href="/">
-        <a className={styles.back}>Back to List</a>
-      </Link>
+
       <div className={styles['title-cont']}>
+        <Link href="/">
+          <a className={styles.back}>{'<< Back to List'}</a>
+        </Link>
         {editingTitle ? (
           <div className={styles.field}>
             <input
@@ -171,95 +172,98 @@ const SingleGoal = ({
           </div>
         )}
       </div>
-      {editingContent ? (
-        <div className={styles.field}>
-          <textarea
-            className={styles['text-input']}
-            value={goalContent}
-            onChange={({ target }) => setContent(target.value)}
-          />
-          <button onClick={handleSaveContent}>Save</button>
-        </div>
-      ) : (
-        <div>
-          <button
-            className={styles.edit}
-            onClick={() => setEditingContent(true)}
+
+      <div className={styles.details}>
+        {editingContent ? (
+          <div className={styles.content}>
+            <textarea
+              className={styles['text-input']}
+              value={goalContent}
+              onChange={({ target }) => setContent(target.value)}
+            />
+            <button onClick={handleSaveContent}>Save</button>
+          </div>
+        ) : (
+          <div className={styles.content}>
+            <button
+              className={styles.edit}
+              onClick={() => setEditingContent(true)}
+            >
+              <img className={styles['edit-icon']} src="/edit-icon.svg" />
+            </button>
+            <p>{goalContent}</p>
+          </div>
+        )}
+
+        <h2 className="h2">Tags</h2>
+        <div className={styles['tags-cont']}>
+          <div
+            className={classes(styles.tag, {
+              [styles.tagged]: goalTaggedExercise,
+            })}
           >
-            <img className={styles['edit-icon']} src="/edit-icon.svg" />
-          </button>
-          <p>{goalContent}</p>
-        </div>
-      )}
+            <span>#exercise</span>
+            <button className={styles.close} onClick={(e) => toggleExercise(e)}>
+              <img src="/close.svg" />
+            </button>
+          </div>
 
-      <h2 className="h2">Tags</h2>
-      <div className={styles['tags-cont']}>
-        <div
-          className={classes(styles.tag, {
-            [styles.tagged]: goalTaggedExercise,
-          })}
-        >
-          <span>#exercise</span>
-          <button className={styles.close} onClick={(e) => toggleExercise(e)}>
-            <img src="/close.svg" />
-          </button>
+          <div
+            className={classes(styles.tag, {
+              [styles.tagged]: goalTaggedCoding,
+            })}
+          >
+            <span>#coding</span>
+            <button className={styles.close} onClick={(e) => toggleCoding(e)}>
+              <img src="/close.svg" />
+            </button>
+          </div>
+
+          <div
+            className={classes(styles.tag, {
+              [styles.tagged]: goalTaggedCooking,
+            })}
+          >
+            <span>#cooking</span>
+            <button className={styles.close} onClick={(e) => toggleCooking(e)}>
+              <img src="/close.svg" />
+            </button>
+          </div>
         </div>
 
-        <div
-          className={classes(styles.tag, {
-            [styles.tagged]: goalTaggedCoding,
-          })}
-        >
-          <span>#coding</span>
-          <button className={styles.close} onClick={(e) => toggleCoding(e)}>
-            <img src="/close.svg" />
+        <h2 className="h2">Status</h2>
+        <div className={styles['status-cont']}>
+          <button
+            className={classes(styles.status, {
+              [styles.active]: goalStatus === 'paused',
+            })}
+            onClick={(e) => handleStatus(e)}
+            value="paused"
+          >
+            Paused
+          </button>
+          <button
+            className={classes(styles.status, {
+              [styles.active]: goalStatus === 'progress',
+            })}
+            onClick={(e) => handleStatus(e)}
+            value="progress"
+          >
+            In Progress
+          </button>
+          <button
+            className={classes(styles.status, {
+              [styles.active]: goalStatus === 'complete',
+            })}
+            onClick={(e) => handleStatus(e)}
+            value="complete"
+          >
+            Complete
+          </button>
+          <button className={styles.delete} onClick={(e) => handleDelete(e)}>
+            Delete This Goal
           </button>
         </div>
-
-        <div
-          className={classes(styles.tag, {
-            [styles.tagged]: goalTaggedCooking,
-          })}
-        >
-          <span>#cooking</span>
-          <button className={styles.close} onClick={(e) => toggleCooking(e)}>
-            <img src="/close.svg" />
-          </button>
-        </div>
-      </div>
-
-      <h2 className="h2">Status</h2>
-      <div className={styles['status-cont']}>
-        <button
-          className={classes(styles.status, {
-            [styles.active]: goalStatus === 'paused',
-          })}
-          onClick={(e) => handleStatus(e)}
-          value="paused"
-        >
-          Paused
-        </button>
-        <button
-          className={classes(styles.status, {
-            [styles.active]: goalStatus === 'progress',
-          })}
-          onClick={(e) => handleStatus(e)}
-          value="progress"
-        >
-          In Progress
-        </button>
-        <button
-          className={classes(styles.status, {
-            [styles.active]: goalStatus === 'complete',
-          })}
-          onClick={(e) => handleStatus(e)}
-          value="complete"
-        >
-          Complete
-        </button>
-        <button className={styles.delete} onClick={(e) => handleDelete(e)}>
-          Delete This Goal
-        </button>
       </div>
     </main>
   );

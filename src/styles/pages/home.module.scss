@@ -4,6 +4,25 @@
   display: flex;
 }
 
+.title {
+  text-align: center;
+  margin-bottom: $page-margin;
+	background-color: white;
+  padding: $section-padding;
+  border-radius: 1rem;
+}
+
+.new, .list-cont {
+  background-color: white;
+  padding: $section-padding;
+  border-radius: 1rem;
+}
+
+.new {
+  width: 40%;
+  margin-right: $page-margin;
+}
+
 .list-cont {
   width: 60%;
 }

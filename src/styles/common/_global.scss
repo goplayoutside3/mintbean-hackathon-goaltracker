@@ -19,15 +19,12 @@ body {
 
 .main {
 	margin: $page-margin;
-  background-color: white;
-  border-radius: 1rem;
-	padding: $section-padding;
 	min-height: calc(100vh - #{$page-margin} * 2);
 }
 
-h1, .h2, .h3 {
+.h2 {
 	line-height: 1;
-	margin-bottom: $copy-margin-bottom;
+	margin-bottom: $copy-margin-bottom * 2;
 }
 
 h1 {
