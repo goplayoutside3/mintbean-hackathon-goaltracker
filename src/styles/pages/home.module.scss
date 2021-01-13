@@ -7,12 +7,13 @@
 .title {
   text-align: center;
   margin-bottom: $page-margin;
-	background-color: white;
+  background-color: white;
   padding: $section-padding;
   border-radius: 1rem;
 }
 
-.new, .list-cont {
+.new,
+.list-cont {
   background-color: white;
   padding: $section-padding;
   border-radius: 1rem;
@@ -62,10 +63,16 @@
 
     &.coding {
       border-color: $redish;
+      &.active {
+        background-color: $redish;
+      }
     }
 
     &.cooking {
       border-color: $blush;
+      &.active {
+        background-color: $blush;
+      }
     }
   }
 }

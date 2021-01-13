@@ -9,12 +9,18 @@ import styles from '../styles/pages/home.module.scss';
 import classes from 'classnames';
 
 const Home = () => {
-  const [goals, setGoals] = useState([]);
+  const [fetchedGoals, setFetchedGoals] = useState([]);
+  const [displayedGoals, setDisplayedGoals] = useState([]);
+
   const [filterExercise, setFilterExercise] = useState(false);
   const [filterCoding, setFilterCoding] = useState(false);
   const [filterCooking, setFilterCooking] = useState(false);
 
   useEffect(() => {
+    fetchGoals();
+  }, []);
+
+  const fetchGoals = () => {
     fire
       .firestore()
       .collection('goals')
@@ -23,9 +29,22 @@ const Home = () => {
           id: goal.id,
           ...goal.data(),
         }));
-        setGoals(goals);
+        setFetchedGoals(goals);
+        setDisplayedGoals(goals);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    if ((!filterExercise && !filterCoding && !filterCooking)) {
+      setDisplayedGoals(fetchedGoals);
+      return;
+    }
+
+   const filteredList = displayedGoals.filter(goal => goal.taggedExercise === filterExercise).filter(goal => goal.taggedCoding === filterCoding).filter(goal => goal.taggedCooking === filterCooking)
+
+
+    setDisplayedGoals(filteredList);
+  }, [filterExercise, filterCoding, filterCooking]);
 
   return (
     <main className="main">
@@ -79,9 +98,9 @@ const Home = () => {
             </button>
           </div>
 
-          {goals && goals.length && (
+          {displayedGoals && displayedGoals.length && (
             <ol type="1" className={styles.list}>
-              {goals.map((goal, index) => (
+              {displayedGoals.map((goal, index) => (
                 <GoalPreview key={goal.id} goal={goal} index={index} />
               ))}
             </ol>
