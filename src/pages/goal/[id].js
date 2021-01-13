@@ -4,14 +4,26 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import styles from '../../styles/pages/goal-id.module.scss';
 import { useState } from 'react';
-import classes from 'classnames'
+import classes from 'classnames';
 
-const SingleGoal = ({ title = '', content = '', goalId, status = 'paused' }) => {
+const SingleGoal = ({
+  title = '',
+  content = '',
+  goalId,
+  status = 'paused',
+  taggedExercise = false,
+  taggedCooking = false,
+  taggedCoding = false,
+}) => {
   const router = useRouter();
 
   const [goalTitle, setTitle] = useState(title);
   const [goalContent, setContent] = useState(content);
   const [goalStatus, setStatus] = useState(status);
+  const [goalTaggedExercise, setTaggedExercise] = useState(taggedExercise);
+  const [goalTaggedCoding, setTaggedCoding] = useState(taggedCoding);
+  const [goalTaggedCooking, setTaggedCooking] = useState(taggedCooking);
+
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingContent, setEditingContent] = useState(false);
 
@@ -67,16 +79,16 @@ const SingleGoal = ({ title = '', content = '', goalId, status = 'paused' }) => 
     e.preventDefault();
 
     fire
-    .firestore()
-    .collection('goals')
-    .doc(goalId)
-    .update({
-      status: e.target.value,
-    })
-    .then(() => {
-      setStatus(e.target.value)
-    })
-    .catch((error) => console.log(error));
+      .firestore()
+      .collection('goals')
+      .doc(goalId)
+      .update({
+        status: e.target.value,
+      })
+      .then(() => {
+        setStatus(e.target.value);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -130,6 +142,44 @@ const SingleGoal = ({ title = '', content = '', goalId, status = 'paused' }) => 
           <p>{goalContent}</p>
         </div>
       )}
+
+      <h2 className="h2">Tags</h2>
+      <div className={styles['tags-cont']}>
+        <div
+          className={classes(styles.tag, {
+            [styles.tagged]: goalTaggedExercise,
+          })}
+        >
+          <span>#exercise</span>
+          <button className={styles.close}>
+            <img src="/close.svg" />
+          </button>
+        </div>
+
+        <div
+          className={classes(styles.tag, {
+            [styles.tagged]: goalTaggedCoding,
+          })}
+        >
+          <span>#coding</span>
+          <button className={styles.close}>
+            <img src="/close.svg" />
+          </button>
+        </div>
+
+        <div
+          className={classes(styles.tag, {
+            [styles.tagged]: goalTaggedCooking,
+          })}
+        >
+          <span>#cooking</span>
+          <button className={styles.close}>
+            <img src="/close.svg" />
+          </button>
+        </div>
+      </div>
+
+      <h2 className="h2">Status</h2>
       <div className={styles['status-cont']}>
         <button
           className={classes(styles.status, {
@@ -178,6 +228,9 @@ export const getServerSideProps = async ({ query }) => {
       goal['title'] = result.data().title;
       goal['content'] = result.data().content;
       goal['status'] = result.data().status;
+      goal['taggedExercise'] = result.data().taggedExercise;
+      goal['taggedCoding'] = result.data().taggedCoding;
+      goal['taggedCooking'] = result.data().taggedCooking;
     });
 
   return {
@@ -185,7 +238,10 @@ export const getServerSideProps = async ({ query }) => {
       title: goal.title,
       content: goal.content,
       goalId: query.id,
-      status: goal.status
+      status: goal.status,
+      taggedExercise: goal.taggedExercise,
+      taggedCoding: goal.taggedCoding,
+      taggedCooking: goal.taggedCooking,
     },
   };
 };

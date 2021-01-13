@@ -36,12 +36,48 @@
   }
 }
 
+.tags-cont {
+  display: flex;
+  margin-bottom: $copy-margin-bottom;
+
+  .tag {
+    background: $light-gray;
+    padding: 8px;
+    position: relative;
+    margin-right: $copy-margin-bottom;
+    transition: all 150ms linear;
+
+    &.tagged {
+      background: $lavender;
+
+      .close {
+        transform: rotate(0);
+      }
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: -0.4rem;
+    right: -0.4rem;
+    padding: 0;
+    background-color: transparent;
+    transform: rotate(45deg);
+    transition: all 150ms linear;
+
+    img {
+      height: 0.8rem;
+      width: 0.8rem;
+    }
+  }
+}
+
 .status-cont {
   display: flex;
   margin-bottom: $copy-margin-bottom;
 
   .status, .delete {
-    background-color: #eeeeee;
+    background-color: $light-gray;
     padding: 10px 20px;
     border-radius: 5px;
     font-family: $roboto-bold;
