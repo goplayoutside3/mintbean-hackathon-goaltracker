@@ -31,3 +31,41 @@
   width: 100%;
   list-style: inside;
 }
+
+.tags-cont {
+  display: flex;
+  align-items: center;
+  margin-bottom: $copy-margin-bottom * 2;
+
+  .tag {
+    padding: 5px 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: transparent;
+
+    &:not(:last-child) {
+      margin-right: $copy-margin-bottom;
+    }
+
+    &:first-child {
+      margin-left: $copy-margin-bottom;
+    }
+
+    &.exercise {
+      border-color: $sand;
+
+      &.active {
+        background-color: $sand;
+      }
+    }
+
+    &.coding {
+      border-color: $redish;
+    }
+
+    &.cooking {
+      border-color: $blush;
+    }
+  }
+}

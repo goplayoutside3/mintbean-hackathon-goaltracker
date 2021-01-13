@@ -10,6 +10,9 @@ import classes from 'classnames';
 
 const Home = () => {
   const [goals, setGoals] = useState([]);
+  const [filterExercise, setFilterExercise] = useState(false);
+  const [filterCoding, setFilterCoding] = useState(false);
+  const [filterCooking, setFilterCooking] = useState(false);
 
   useEffect(() => {
     fire
@@ -47,6 +50,35 @@ const Home = () => {
         </div>
         <div className={styles['list-cont']}>
           <h2 className={classes('h2', styles.current)}>Current Goals</h2>
+
+          <div className={styles['tags-cont']}>
+            Filter:
+            <button
+              className={classes(styles.tag, styles.exercise, {
+                [styles.active]: filterExercise,
+              })}
+              onClick={() => setFilterExercise(!filterExercise)}
+            >
+              #exercise
+            </button>
+            <button
+              className={classes(styles.tag, styles.coding, {
+                [styles.active]: filterCoding,
+              })}
+              onClick={() => setFilterCoding(!filterCoding)}
+            >
+              #coding
+            </button>
+            <button
+              className={classes(styles.tag, styles.cooking, {
+                [styles.active]: filterCooking,
+              })}
+              onClick={() => setFilterCooking(!filterCooking)}
+            >
+              #cooking
+            </button>
+          </div>
+
           {goals && goals.length && (
             <ol type="1" className={styles.list}>
               {goals.map((goal, index) => (

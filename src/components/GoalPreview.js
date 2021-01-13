@@ -41,7 +41,7 @@ const GoalPreview = ({ goal, index }) => {
       <div className={styles['tags-cont']}>
         <div
           className={classes(styles.tag, styles.exercise, {
-            [styles.tagged]: goal.taggedCoding,
+            [styles.tagged]: goal.taggedExercise,
           })}
         >
           #exercise
@@ -49,7 +49,7 @@ const GoalPreview = ({ goal, index }) => {
 
         <div
           className={classes(styles.tag, styles.coding, {
-            [styles.tagged]: goal.taggedExercise,
+            [styles.tagged]: goal.taggedCoding,
           })}
         >
           #coding
