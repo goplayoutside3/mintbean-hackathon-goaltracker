@@ -91,6 +91,55 @@ const SingleGoal = ({
       .catch((error) => console.log(error));
   };
 
+  const toggleExercise = (e) => {
+    e.preventDefault();
+
+    fire
+      .firestore()
+      .collection('goals')
+      .doc(goalId)
+      .update({
+        taggedExercise: !goalTaggedExercise,
+      })
+      .then(() => {
+        setTaggedExercise(!goalTaggedExercise);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const toggleCoding = (e) => {
+    e.preventDefault();
+
+    fire
+      .firestore()
+      .collection('goals')
+      .doc(goalId)
+      .update({
+        taggedCoding: !goalTaggedCoding,
+      })
+      .then(() => {
+        setTaggedCoding(!goalTaggedCoding);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const toggleCooking = (e) => {
+    console.log('here')
+    e.preventDefault();
+
+    fire
+      .firestore()
+      .collection('goals')
+      .doc(goalId)
+      .update({
+        taggedCooking: !goalTaggedCooking,
+      })
+      .then(() => {
+        setTaggedCooking(!goalTaggedCooking);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <main className="main">
       <Head>
@@ -151,7 +200,7 @@ const SingleGoal = ({
           })}
         >
           <span>#exercise</span>
-          <button className={styles.close}>
+          <button className={styles.close} onClick={(e) => toggleExercise(e)}>
             <img src="/close.svg" />
           </button>
         </div>
@@ -162,7 +211,7 @@ const SingleGoal = ({
           })}
         >
           <span>#coding</span>
-          <button className={styles.close}>
+          <button className={styles.close} onClick={(e) => toggleCoding(e)}>
             <img src="/close.svg" />
           </button>
         </div>
@@ -173,7 +222,7 @@ const SingleGoal = ({
           })}
         >
           <span>#cooking</span>
-          <button className={styles.close}>
+          <button className={styles.close} onClick={(e) => toggleCooking(e)}>
             <img src="/close.svg" />
           </button>
         </div>

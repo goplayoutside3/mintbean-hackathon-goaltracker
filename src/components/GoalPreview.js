@@ -14,7 +14,7 @@ const GoalPreview = ({ goal, index }) => {
       .doc(goal.id)
       .delete()
       .then(() => {
-        console.log('successfully deleted');
+        // do something?
       })
       .catch((error) => {
         console.log(error);
