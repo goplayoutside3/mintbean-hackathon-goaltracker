@@ -1,8 +1,14 @@
 @import '../common/_variables.scss';
 @import '../common/_typography.scss';
+@import '../common/_mixins.scss';
 
 .container {
   display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
 }
 
 .title {
@@ -21,12 +27,22 @@
 }
 
 .new {
-  width: 40%;
-  margin-right: $page-margin;
+  width: 100%;
+  margin-bottom: $page-margin;
+
+  @include media-breakpoint-up(md) {
+    width: 40%;
+    margin-bottom: 0;
+    margin-right: $page-margin;
+  }
 }
 
 .list-cont {
-  width: 60%;
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    width: 60%;
+  }
 }
 
 .list {
@@ -57,7 +73,12 @@
 .tags-cont {
   display: flex;
   align-items: center;
-  margin-bottom: $copy-margin-bottom ;
+  margin-bottom: $copy-margin-bottom;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  }
 
   .tag {
     padding: 5px 10px;
@@ -66,14 +87,27 @@
     border-radius: 5px;
     background-color: transparent;
     font-family: $roboto-bold;
+    font-size: 0.8rem;
     transition: all 150ms linear;
 
+    @include media-breakpoint-up(md) {
+      font-size: 1rem;
+    }
+
     &:not(:last-child) {
-      margin-right: $copy-margin-bottom;
+      margin-right: $section-padding;
+
+      @include media-breakpoint-up(md) {
+        margin-right: $copy-margin-bottom;
+      }
     }
 
     &:first-child {
-      margin-left: $copy-margin-bottom;
+      margin-left: $section-padding;
+
+      @include media-breakpoint-up(md) {
+        margin-left: $copy-margin-bottom;
+      }
     }
 
     &.exercise {
@@ -101,12 +135,28 @@
 
 .status-cont {
   margin-bottom: $copy-margin-bottom * 2;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  }
 
   .status {
     background-color: transparent;
     border: $light-gray solid 1px;
     font-family: $roboto-bold;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    margin-bottom: $section-padding;
     transition: all 150ms linear;
+
+    @include media-breakpoint-up(md) {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
 
     &:hover {
       border-color: $green-bg;
@@ -114,11 +164,19 @@
     }
 
     &:not(:last-child) {
-      margin-right: $copy-margin-bottom;
+      margin-right: $section-padding;
+
+      @include media-breakpoint-up(md) {
+        margin-right: $copy-margin-bottom;
+      }
     }
 
     &:first-child {
-      margin-left: $copy-margin-bottom;
+      margin-left: $section-padding;
+
+      @include media-breakpoint-up(md) {
+        margin-left: $copy-margin-bottom;
+      }
     }
 
     &.active {

@@ -37,17 +37,20 @@ const Home = () => {
   };
 
   useEffect(() => {
+    // first filter by search term for name
     const filteredList = fetchedGoals.filter((goal) => {
       return goal.title.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
     let newlySorted;
 
+    // sort by status
     if (sortByStatus === 'all') newlySorted = filteredList;
     else {
       newlySorted = filteredList.filter((goal) => goal.status === sortByStatus);
     }
 
+    // filter for tags
     if (!filterExercise && !filterCoding && !filterCooking) {
       setDisplayedGoals(newlySorted);
       return;
@@ -56,7 +59,6 @@ const Home = () => {
         .filter((goal) => goal.taggedExercise === filterExercise)
         .filter((goal) => goal.taggedCoding === filterCoding)
         .filter((goal) => goal.taggedCooking === filterCooking);
-
       setDisplayedGoals(tagFilteredList);
     }
   }, [filterExercise, filterCoding, filterCooking, searchTerm, sortByStatus]);
@@ -102,7 +104,7 @@ const Home = () => {
             />
           </div>
           <div className={styles['tags-cont']}>
-            Filter Tag:
+            Filter:
             <button
               className={classes(styles.tag, styles.exercise, {
                 [styles.active]: filterExercise,
@@ -130,7 +132,7 @@ const Home = () => {
           </div>
 
           <div className={styles['status-cont']}>
-            Sort By:
+            Sort:
             <button
               className={classes(styles.status, {
                 [styles.active]: sortByStatus === 'all',

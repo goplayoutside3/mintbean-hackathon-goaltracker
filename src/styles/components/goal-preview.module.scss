@@ -1,5 +1,6 @@
 @import '../common/_variables.scss';
 @import '../common/_typography.scss';
+@import '../common/_mixins.scss';
 
 .goal {
   display: flex;
@@ -67,20 +68,37 @@
 
 .status-cont {
   display: flex;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  }
 
   .status,
   .delete {
     background-color: $light-gray;
-    padding: 10px 20px;
+    padding: 5px 10px;
+    margin-top: $section-padding / 2;
     border-radius: 5px;
+    font-size: 0.8rem;
     transition: all 150ms linear;
+
+    &:not(:last-child) {
+      margin-right: $section-padding / 2;
+
+      @include media-breakpoint-up(md) {
+        margin-right: $copy-margin-bottom;
+      }
+    }
 
     &:hover {
       background-color: $green-bg;
     }
 
-    &:not(:last-child) {
-      margin-right: $copy-margin-bottom;
+    @include media-breakpoint-up(md) {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 1rem;
     }
   }
 

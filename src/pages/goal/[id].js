@@ -282,7 +282,7 @@ const SingleGoal = ({
             Complete
           </button>
           <button className={styles.delete} onClick={(e) => handleDelete(e)}>
-            Delete This Goal
+            Delete
           </button>
         </div>
 
