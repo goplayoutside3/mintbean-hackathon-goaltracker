@@ -15,6 +15,7 @@ const Home = () => {
   const [filterExercise, setFilterExercise] = useState(false);
   const [filterCoding, setFilterCoding] = useState(false);
   const [filterCooking, setFilterCooking] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchGoals();
@@ -35,16 +36,29 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if ((!filterExercise && !filterCoding && !filterCooking)) {
-      setDisplayedGoals(fetchedGoals);
+    const filteredList = fetchedGoals.filter((goal) => {
+      return goal.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+
+    if (!filterExercise && !filterCoding && !filterCooking) {
+      setDisplayedGoals(filteredList);
       return;
     }
 
-   const filteredList = displayedGoals.filter(goal => goal.taggedExercise === filterExercise).filter(goal => goal.taggedCoding === filterCoding).filter(goal => goal.taggedCooking === filterCooking)
+    const tagFilteredList = filteredList
+      .filter((goal) => goal.taggedExercise === filterExercise)
+      .filter((goal) => goal.taggedCoding === filterCoding)
+      .filter((goal) => goal.taggedCooking === filterCooking);
 
+    setDisplayedGoals(tagFilteredList);
+  }, [filterExercise, filterCoding, filterCooking, searchTerm]);
 
-    setDisplayedGoals(filteredList);
-  }, [filterExercise, filterCoding, filterCooking]);
+  const handleSearchTerm = (e) => {
+    e.preventDefault();
+    const str = e.target.value;
+    str.replace(/[^a-zA-Z ]/g, '');
+    setSearchTerm(str);
+  };
 
   return (
     <main className="main">
@@ -70,8 +84,17 @@ const Home = () => {
         <div className={styles['list-cont']}>
           <h2 className={classes('h2', styles.current)}>Current Goals</h2>
 
+          <div className={styles.search}>
+            <label className={styles['search-label']}>Search by Name:</label>
+            <input
+              type="text"
+              className={styles['search-input']}
+              value={searchTerm}
+              onChange={(e) => handleSearchTerm(e)}
+            />
+          </div>
           <div className={styles['tags-cont']}>
-            Filter:
+            Filter by Tag:
             <button
               className={classes(styles.tag, styles.exercise, {
                 [styles.active]: filterExercise,
