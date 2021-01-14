@@ -195,10 +195,10 @@ const SingleGoal = ({
           </div>
         )}
 
-        <h2 className="h2">Tags</h2>
+        <h2 className="h3">Tags</h2>
         <div className={styles['tags-cont']}>
           <div
-            className={classes(styles.tag, {
+            className={classes(styles.tag, styles.exercise, {
               [styles.tagged]: goalTaggedExercise,
             })}
           >
@@ -209,7 +209,7 @@ const SingleGoal = ({
           </div>
 
           <div
-            className={classes(styles.tag, {
+            className={classes(styles.tag, styles.coding, {
               [styles.tagged]: goalTaggedCoding,
             })}
           >
@@ -220,7 +220,7 @@ const SingleGoal = ({
           </div>
 
           <div
-            className={classes(styles.tag, {
+            className={classes(styles.tag, styles.cooking, {
               [styles.tagged]: goalTaggedCooking,
             })}
           >
@@ -231,7 +231,7 @@ const SingleGoal = ({
           </div>
         </div>
 
-        <h2 className="h2">Status</h2>
+        <h2 className="h3">Status</h2>
         <div className={styles['status-cont']}>
           <button
             className={classes(styles.status, {

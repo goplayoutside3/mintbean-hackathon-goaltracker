@@ -16,6 +16,7 @@ const Home = () => {
   const [filterCoding, setFilterCoding] = useState(false);
   const [filterCooking, setFilterCooking] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortByStatus, setSortStatus] = useState('all');
 
   useEffect(() => {
     fetchGoals();
@@ -50,8 +51,15 @@ const Home = () => {
       .filter((goal) => goal.taggedCoding === filterCoding)
       .filter((goal) => goal.taggedCooking === filterCooking);
 
+    if (sortByStatus !== 'all') {
+      const statusSorted = tagFilteredList.filter(
+        (goal) => goal.status === sortByStatus
+      );
+      setDisplayedGoals(statusSorted);
+    }
+
     setDisplayedGoals(tagFilteredList);
-  }, [filterExercise, filterCoding, filterCooking, searchTerm]);
+  }, [filterExercise, filterCoding, filterCooking, searchTerm, sortByStatus]);
 
   const handleSearchTerm = (e) => {
     e.preventDefault();
@@ -85,7 +93,7 @@ const Home = () => {
           <h2 className={classes('h2', styles.current)}>Current Goals</h2>
 
           <div className={styles.search}>
-            <label className={styles['search-label']}>Search by Name:</label>
+            <label className={styles['search-label']}>Search Name:</label>
             <input
               type="text"
               className={styles['search-input']}
@@ -94,7 +102,7 @@ const Home = () => {
             />
           </div>
           <div className={styles['tags-cont']}>
-            Filter by Tag:
+            Filter Tag:
             <button
               className={classes(styles.tag, styles.exercise, {
                 [styles.active]: filterExercise,
@@ -118,6 +126,46 @@ const Home = () => {
               onClick={() => setFilterCooking(!filterCooking)}
             >
               #cooking
+            </button>
+          </div>
+
+          <div className={styles['status-cont']}>
+            Sort By:
+            <button
+              className={classes(styles.status, {
+                [styles.active]: sortByStatus === 'all',
+              })}
+              onClick={(e) => setSortStatus(e.target.value)}
+              value="all"
+            >
+              All
+            </button>
+            <button
+              className={classes(styles.status, {
+                [styles.active]: sortByStatus === 'paused',
+              })}
+              onClick={(e) => setSortStatus(e.target.value)}
+              value="paused"
+            >
+              Paused
+            </button>
+            <button
+              className={classes(styles.status, {
+                [styles.active]: sortByStatus === 'progress',
+              })}
+              onClick={(e) => setSortStatus(e.target.value)}
+              value="progress"
+            >
+              In Progress
+            </button>
+            <button
+              className={classes(styles.status, {
+                [styles.active]: sortByStatus === 'complete',
+              })}
+              onClick={(e) => setSortStatus(e.target.value)}
+              value="complete"
+            >
+              Complete
             </button>
           </div>
 

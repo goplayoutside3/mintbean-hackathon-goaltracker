@@ -47,24 +47,37 @@
 
 .title-cont {
   margin-bottom: $copy-margin-bottom;
+
+  &:hover {
+    .title, .number {
+      color: $eggplant;
+    }
+  }
 }
 
 .number {
   margin-right: 5px;
 }
 
-.title, .number {
+.title,
+.number {
   font-size: 1.2rem;
+  transition: all 150ms linear;
 }
 
 .status-cont {
   display: flex;
 
-  .status, .delete {
+  .status,
+  .delete {
     background-color: $light-gray;
     padding: 10px 20px;
     border-radius: 5px;
-    font-family: $roboto-bold;
+    transition: all 150ms linear;
+
+    &:hover {
+      background-color: $green-bg;
+    }
 
     &:not(:last-child) {
       margin-right: $copy-margin-bottom;

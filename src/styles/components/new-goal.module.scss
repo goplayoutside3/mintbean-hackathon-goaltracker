@@ -14,7 +14,7 @@
   padding: 2px;
   font-size: 1rem;
   font-family: $roboto-light;
-  border: $dark-green 1px solid;
+  border: $dark-gray 1px solid;
   border-radius: 3px;
   min-height: 1.5rem;
 }
@@ -40,4 +40,10 @@
 .save {
   background: $dark-green;
   color: white;
+  font-family: $roboto-bold;
+  transition: all 150ms linear;
+
+  &:hover {
+    background: $eggplant;
+  }
 }
