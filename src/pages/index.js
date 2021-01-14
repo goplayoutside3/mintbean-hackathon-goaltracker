@@ -41,24 +41,24 @@ const Home = () => {
       return goal.title.toLowerCase().includes(searchTerm.toLowerCase());
     });
 
+    let newlySorted;
+
+    if (sortByStatus === 'all') newlySorted = filteredList;
+    else {
+      newlySorted = filteredList.filter((goal) => goal.status === sortByStatus);
+    }
+
     if (!filterExercise && !filterCoding && !filterCooking) {
-      setDisplayedGoals(filteredList);
+      setDisplayedGoals(newlySorted);
       return;
+    } else {
+      const tagFilteredList = newlySorted
+        .filter((goal) => goal.taggedExercise === filterExercise)
+        .filter((goal) => goal.taggedCoding === filterCoding)
+        .filter((goal) => goal.taggedCooking === filterCooking);
+
+      setDisplayedGoals(tagFilteredList);
     }
-
-    const tagFilteredList = filteredList
-      .filter((goal) => goal.taggedExercise === filterExercise)
-      .filter((goal) => goal.taggedCoding === filterCoding)
-      .filter((goal) => goal.taggedCooking === filterCooking);
-
-    if (sortByStatus !== 'all') {
-      const statusSorted = tagFilteredList.filter(
-        (goal) => goal.status === sortByStatus
-      );
-      setDisplayedGoals(statusSorted);
-    }
-
-    setDisplayedGoals(tagFilteredList);
   }, [filterExercise, filterCoding, filterCooking, searchTerm, sortByStatus]);
 
   const handleSearchTerm = (e) => {
