@@ -98,6 +98,7 @@
 
 .status-cont {
   display: flex;
+  margin-bottom: $copy-margin-bottom * 2;
 
   .status, .delete {
     background-color: $light-gray;
@@ -111,11 +112,32 @@
     }
 
     &:not(:last-child) {
-      margin-right: 10px;
+      margin-right: $copy-margin-bottom;
     }
   }
 
   .status.active {
     background-color: $green-bg;
+  }
+}
+
+.time {
+  color: $eggplant;
+}
+
+.time-cont {
+  display: flex;
+
+  .time-btn {
+    font-family: $roboto-bold;
+    transition: all 150ms linear;
+
+    &:hover {
+      background-color: $green-bg;
+    }
+
+    &:not(:last-child) {
+      margin-right: $copy-margin-bottom;
+    }
   }
 }

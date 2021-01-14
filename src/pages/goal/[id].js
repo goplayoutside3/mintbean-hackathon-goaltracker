@@ -14,6 +14,8 @@ const SingleGoal = ({
   taggedExercise = false,
   taggedCooking = false,
   taggedCoding = false,
+  hours = 0,
+  minutes = 0,
 }) => {
   const router = useRouter();
 
@@ -26,6 +28,9 @@ const SingleGoal = ({
 
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingContent, setEditingContent] = useState(false);
+
+  const [goalElapsedHour, setElapsedHour] = useState(hours);
+  const [goalElapsedMinutes, setElapsedMinutes] = useState(minutes);
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -124,7 +129,6 @@ const SingleGoal = ({
   };
 
   const toggleCooking = (e) => {
-    console.log('here');
     e.preventDefault();
 
     fire
@@ -136,6 +140,23 @@ const SingleGoal = ({
       })
       .then(() => {
         setTaggedCooking(!goalTaggedCooking);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const handleFBTime = (minutes) => {
+    const totalMinutes = goalElapsedHour * 60 + goalElapsedMinutes + minutes;
+
+    fire
+      .firestore()
+      .collection('goals')
+      .doc(goalId)
+      .update({
+        time: totalMinutes,
+      })
+      .then(() => {
+        setElapsedHour(Math.floor(totalMinutes / 60));
+        setElapsedMinutes(totalMinutes % 60);
       })
       .catch((error) => console.log(error));
   };
@@ -264,6 +285,37 @@ const SingleGoal = ({
             Delete This Goal
           </button>
         </div>
+
+        <h2 className="h3">
+          Time Elapsed:{' '}
+          <span className={styles.time}>{`${goalElapsedHour}hr ${goalElapsedMinutes}min`}</span>
+        </h2>
+        <div className={styles['time-cont']}>
+          <button
+            className={styles['time-btn']}
+            onClick={() => handleFBTime(60)}
+          >
+            +1 Hour
+          </button>
+          <button
+            className={styles['time-btn']}
+            onClick={() => handleFBTime(-60)}
+          >
+            -1 Hour
+          </button>
+          <button
+            className={styles['time-btn']}
+            onClick={() => handleFBTime(1)}
+          >
+            +1 Minute
+          </button>
+          <button
+            className={styles['time-btn']}
+            onClick={() => handleFBTime(-1)}
+          >
+            -1 Minute
+          </button>
+        </div>
       </div>
     </main>
   );
@@ -284,6 +336,9 @@ export const getServerSideProps = async ({ query }) => {
       goal['taggedExercise'] = result.data().taggedExercise;
       goal['taggedCoding'] = result.data().taggedCoding;
       goal['taggedCooking'] = result.data().taggedCooking;
+
+      goal['hours'] = Math.floor(result.data().time / 60);
+      goal['minutes'] = result.data().time % 60;
     });
 
   return {
@@ -295,6 +350,8 @@ export const getServerSideProps = async ({ query }) => {
       taggedExercise: goal.taggedExercise,
       taggedCoding: goal.taggedCoding,
       taggedCooking: goal.taggedCooking,
+      hours: goal.hours,
+      minutes: goal.minutes,
     },
   };
 };
