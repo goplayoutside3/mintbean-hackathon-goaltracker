@@ -34,6 +34,9 @@
     width: 40%;
     margin-bottom: 0;
     margin-right: $page-margin;
+    max-height: calc(100vh - #{$page-margin * 2});
+    position: sticky;
+    top: $page-margin;
   }
 }
 

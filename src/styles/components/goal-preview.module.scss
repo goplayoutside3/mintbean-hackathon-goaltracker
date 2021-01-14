@@ -66,6 +66,11 @@
   transition: all 150ms linear;
 }
 
+.time {
+  margin-left: 10px;
+  color: $eggplant;
+}
+
 .status-cont {
   display: flex;
   flex-wrap: wrap;

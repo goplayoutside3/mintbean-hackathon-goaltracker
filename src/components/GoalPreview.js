@@ -36,6 +36,9 @@ const GoalPreview = ({ goal, index }) => {
       .catch((error) => console.log(error));
   };
 
+  const elapsedHours = Math.floor(goal.time / 60);
+  const elapsedMinutes = goal.time % 60;
+
   return (
     <li key={goal.id} className={styles.goal}>
       <div className={styles['tags-cont']}>
@@ -62,7 +65,6 @@ const GoalPreview = ({ goal, index }) => {
         >
           #cooking
         </div>
-
       </div>
       <div className={styles['title-cont']}>
         <span className={styles.number}>{index + 1}.</span>
@@ -71,6 +73,9 @@ const GoalPreview = ({ goal, index }) => {
             <a className={styles.title}>{goal.title}</a>
           </Link>
         )}
+        <span
+          className={styles.time}
+        >{`(${elapsedHours}hr ${elapsedMinutes}min)`}</span>
       </div>
       <div className={styles['status-cont']}>
         <button

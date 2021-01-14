@@ -41,6 +41,7 @@
   @include media-breakpoint-up(md) {
     right: $section-padding / 2;
     top: $section-padding / 2;
+    transform: translateX(0);
   }
 
   &:hover {
