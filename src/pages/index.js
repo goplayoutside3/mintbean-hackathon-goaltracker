@@ -55,10 +55,13 @@ const Home = () => {
       setDisplayedGoals(newlySorted);
       return;
     } else {
-      const tagFilteredList = newlySorted
-        .filter((goal) => goal.taggedExercise === filterExercise)
-        .filter((goal) => goal.taggedCoding === filterCoding)
-        .filter((goal) => goal.taggedCooking === filterCooking);
+      let tagFilteredList = newlySorted;
+      if (filterExercise)
+        tagFilteredList = tagFilteredList.filter((goal) => goal.taggedExercise);
+      if (filterCoding)
+        tagFilteredList = tagFilteredList.filter((goal) => goal.taggedCoding);
+      if (filterCooking)
+        tagFilteredList = tagFilteredList.filter((goal) => goal.taggedCooking);
       setDisplayedGoals(tagFilteredList);
     }
   }, [filterExercise, filterCoding, filterCooking, searchTerm, sortByStatus]);
@@ -86,7 +89,23 @@ const Home = () => {
         ></link>
       </Head>
 
-      <h1 className={styles.title}>Daily Goals Tracker</h1>
+      <div className={styles['title-cont']}>
+        <h1 className={styles.title}>Daily Goals Tracker</h1>
+        <p className={styles.subtext}>
+          This app was built as part of 7-day hackathon hosted by{' '}
+          <a href="https://www.mintbean.io/" target="_blank">
+            Mint Bean
+          </a>
+          . Check out the requirements{' '}
+          <a
+            href="https://www.mintbean.io/meets/bd3f53c6-c41d-413a-a220-9cedad004b51"
+            target="_blank"
+          >
+            here
+          </a>
+          !
+        </p>
+      </div>
       <div className={styles.container}>
         <div className={styles.new}>
           <NewGoal />
@@ -171,12 +190,14 @@ const Home = () => {
             </button>
           </div>
 
-          {displayedGoals && displayedGoals.length && (
+          {displayedGoals.length ? (
             <ol type="1" className={styles.list}>
               {displayedGoals.map((goal, index) => (
                 <GoalPreview key={goal.id} goal={goal} index={index} />
               ))}
             </ol>
+          ) : (
+            <p>Add some goals to your list!</p>
           )}
         </div>
       </div>

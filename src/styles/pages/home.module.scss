@@ -11,12 +11,25 @@
   }
 }
 
-.title {
-  text-align: center;
+.title-cont {
   margin-bottom: $page-margin;
   background-color: white;
   padding: $section-padding;
   border-radius: 1rem;
+  text-align: center;
+}
+
+.subtext {
+  margin-top: $copy-margin-bottom;
+  margin-bottom: 0;
+
+  a {
+    color: $eggplant;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
 }
 
 .new,
